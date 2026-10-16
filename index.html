@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101827">
+<title>زخرفتي | رموز وفراغات</title>
+<style>
+:root{--bg:#0b1020;--panel:#151d30;--panel2:#1c2740;--text:#f4f7ff;--muted:#aab6d0;--accent:#7c5cff;--accent2:#22d3ee;--line:#2b3855}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:radial-gradient(circle at top right,#20214b 0,#0b1020 45%);color:var(--text);min-height:100vh}
+header{text-align:center;padding:34px 16px 24px}header .logo{font-size:42px}h1{margin:10px 0;font-size:clamp(28px,5vw,42px)}header p{color:var(--muted);margin:8px auto;max-width:650px;line-height:1.8}
+main{width:min(1000px,92%);margin:auto;padding-bottom:42px}.tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0 20px}.tab{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:11px 17px;border-radius:12px;cursor:pointer;font-weight:bold}.tab.active,.primary{background:linear-gradient(120deg,var(--accent),#4c8dff);border-color:transparent}
+.card{background:rgba(21,29,48,.95);border:1px solid var(--line);border-radius:18px;padding:22px;margin:14px 0;box-shadow:0 12px 35px #0002}.section{display:none}.section.active{display:block}h2{margin-top:0;font-size:22px}label{display:block;color:var(--muted);margin:12px 0 7px}
+input,textarea,select{width:100%;background:#0d1425;border:1px solid var(--line);border-radius:11px;padding:13px;color:var(--text);font:inherit;outline:none}textarea{min-height:90px;resize:vertical}.row{display:grid;grid-template-columns:1fr auto;gap:9px;align-items:end}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:12px 16px;border-radius:11px;cursor:pointer;font:inherit;font-weight:bold}.btn:hover,.tab:hover{filter:brightness(1.15)}.primary{color:white}.result{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.item{background:#0d1425;border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;gap:8px;align-items:center;justify-content:space-between;overflow-wrap:anywhere}.item span{font-size:17px;direction:auto;word-break:break-word}.item button{padding:8px 10px;flex-shrink:0}.symbols{display:grid;grid-template-columns:repeat(auto-fill,minmax(62px,1fr));gap:8px;margin-top:15px}.symbol{font-size:23px;padding:14px 4px;text-align:center;border-radius:10px;background:#0d1425;border:1px solid var(--line);cursor:pointer;color:var(--text)}.symbol:hover{background:#29365a}.hint{color:var(--muted);font-size:13px;line-height:1.8}.notice{color:#bcecff;background:#102b3a;padding:12px;border-radius:10px;line-height:1.7}footer{text-align:center;color:var(--muted);padding:10px 16px 28px;font-size:13px}
+@media(max-width:540px){.card{padding:16px}.row{grid-template-columns:1fr}.row .btn{width:100%}}
+</style>
+</head>
+<body>
+<header><div class="logo">✦</div><h1>زخرفتي</h1><p>موقع بسيط لزخرفة الأسماء، ونسخ الرموز والفراغات المميزة — مناسب لأسماء الألعاب والبايو.</p></header>
+<main>
+<nav class="tabs" aria-label="أقسام الموقع">
+<button class="tab active" data-tab="names">زخرفة الأسماء</button><button class="tab" data-tab="spaces">الفراغات</button><button class="tab" data-tab="symbols">الرموز</button><button class="tab" data-tab="bio">صانع البايو</button>
+</nav>
+<section id="names" class="section active card">
+<h2>🎮 زخرفة الاسم</h2><label for="nameInput">اكتب اسمك هنا</label><div class="row"><input id="nameInput" maxlength="30" placeholder="مثال: TITAN أو الصقر"><button class="btn primary" id="makeNames">زخرف الاسم</button></div><div class="result" id="nameResults"></div><p class="hint">بعض الزخارف والرموز قد لا تظهر في كل لعبة أو جهاز.</p>
+</section>
+<section id="spaces" class="section card">
+<h2>↔️ فراغات جاهزة للنسخ</h2><p class="hint">اختر نوع الفراغ ثم انسخه. بعض الألعاب لا تقبل كل أنواع المسافات.</p><div class="result" id="spaceResults"></div><label for="spaceCount">عدد الفراغات العادية التي تريد إضافتها</label><div class="row"><input id="spaceCount" type="number" min="1" max="20" value="3"><button class="btn primary" id="makeSpace">إنشاء فراغ</button></div><div id="customSpace" class="result"></div>
+</section>
+<section id="symbols" class="section card">
+<h2>✧ مكتبة الرموز</h2><label for="symbolSearch">ابحث عن رمز أو اختر من القائمة</label><input id="symbolSearch" placeholder="اكتب رمزًا للبحث أو تصفح القائمة..."><div class="symbols" id="symbolGrid"></div><p class="hint">اضغط على أي رمز لنسخه مباشرة.</p>
+</section>
+<section id="bio" class="section card">
+<h2>✍️ صانع البايو</h2><label for="bioText">اكتب العبارة</label><textarea id="bioText" placeholder="اكتب عبارتك هنا..."></textarea><label for="bioStyle">اختر الإطار</label><select id="bioStyle"><option value="『|』">『 العبارة 』</option><option value="꧁|꧂">꧁ العبارة ꧂</option><option value="༺|༻">༺ العبارة ༻</option><option value="★|★">★ العبارة ★</option><option value="亗|亗">亗 العبارة 亗</option><option value="「|」">「 العبارة 」</option><option value="乂|乂">乂 العبارة 乂</option></select><button class="btn primary" id="makeBio" style="margin-top:12px">جهّز البايو</button><label for="bioOutput">النتيجة</label><textarea id="bioOutput" placeholder="ستظهر النتيجة هنا..."></textarea><button class="btn" id="copyBio" style="margin-top:8px">نسخ البايو</button>
+</section>
+<div class="notice">الموقع يعمل مباشرة من هذا الملف ولا يحتاج تسجيل دخول أو دفع أو اتصال بالإنترنت.</div>
+</main><footer>زخرفتي ✦ صُمّم للاستخدام الشخصي — جرّب الرموز التي تناسب لعبتك.</footer>
+<script>
+const $=s=>document.querySelector(s);
+async function copyText(text,button){try{await navigator.clipboard.writeText(text)}catch(e){const t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove()}const old=button.textContent;button.textContent='تم النسخ ✓';setTimeout(()=>button.textContent=old,1100)}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===b.dataset.tab))}));
+const styles=[x=>x,x=>'『'+x+'』',x=>'꧁'+x+'꧂',x=>'༺'+x+'༻',x=>'亗'+x+'亗',x=>'乂'+x+'乂',x=>'メ'+x+'メ',x=>'★彡'+x+'彡★',x=>'ツ '+x+' ツ',x=>'么'+x+'么',x=>'〆'+x+'〆',x=>'♛ '+x+' ♛'];
+$('#makeNames').addEventListener('click',()=>{const name=$('#nameInput').value.trim();const box=$('#nameResults');box.innerHTML='';if(!name){box.innerHTML='<p class="hint">اكتب اسمًا أولًا.</p>';return}styles.forEach(fn=>{const val=fn(name),div=document.createElement('div');div.className='item';const span=document.createElement('span');span.textContent=val;const btn=document.createElement('button');btn.className='btn';btn.textContent='نسخ';btn.onclick=()=>copyText(val,btn);div.append(span,btn);box.append(div)})});
+const spaces=[['فراغ يونيكود','ㅤ'],['فراغ صغير',' '],['فراغ رفيع',' '],['فراغ بدون عرض','​'],['فراغ عريض','　']];
+function addCopyItem(parent,label,value){const d=document.createElement('div');d.className='item';const s=document.createElement('span');s.textContent=label+'  ['+value+']';const b=document.createElement('button');b.className='btn';b.textContent='نسخ';b.onclick=()=>copyText(value,b);d.append(s,b);parent.append(d)}
+spaces.forEach(([l,v])=>addCopyItem($('#spaceResults'),l,v));
+$('#makeSpace').onclick=()=>{let n=Math.max(1,Math.min(20,parseInt($('#spaceCount').value)||1));const value='ㅤ'.repeat(n);$('#customSpace').innerHTML='';addCopyItem($('#customSpace'),n+' فراغات',value)};
+const symbols='★ ☆ ✦ ✧ ✩ ✪ ✫ ✬ ✭ ✮ ✯ ✰ ♛ ♕ ♔ ♚ ♡ ♥ ღ ❥ ❣ ☠ ⚡ ☄ ☯ ☬ ✿ ❀ ❁ ❃ ❋ ۞ ※ 々 〆 么 亗 乂 ツ メ 彡 〤 〶 『 』 「 」 【 】 〈 〉 《 》 ꧁ ꧂ ༺ ༻ ࿐ ༒ ࿇ ۝ ⌁ ⌘ ⌬ ⟡ ⟢ ⊹ ⊱ ⊰ ➤ ➳ ➵ ➸ ➺ ➻ ➼ ➽ ➾ ⌖ ⌗ ⌑ ⌘ ☾ ☽ ☼ ☀ ☁ ☂ ♫ ♪ ♬ ♠ ♣ ♦ ♧ ⚔ ⚜ ⚝ ⛧ ⛥ ⛤'.split(' ');
+function renderSymbols(filter=''){const g=$('#symbolGrid');g.innerHTML='';symbols.filter(s=>!filter||s.includes(filter)).forEach(s=>{const b=document.createElement('button');b.className='symbol';b.textContent=s;b.title='اضغط للنسخ';b.onclick=()=>copyText(s,b);g.append(b)})}
+renderSymbols();$('#symbolSearch').addEventListener('input',e=>renderSymbols(e.target.value.trim()));
+$('#makeBio').onclick=()=>{const [a,b]=$('#bioStyle').value.split('|');$('#bioOutput').value=a+$('#bioText').value+b};
+$('#copyBio').onclick=()=>copyText($('#bioOutput').value,$('#copyBio'));
+$('#makeSpace').click();
+</script>
+</body>
+</html>
